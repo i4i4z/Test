@@ -19,7 +19,7 @@ public class MyAppliacation extends Application{
     public void onCreate() {
         super.onCreate();
         Log.d("dd", "sadasdasdasdasd===============");
-//        CommonDBUtils commonDBUtils = new CommonDBUtils(this);
+//        CommonDBUtils commonDBUtils = new CommonDBUtils(this);ssss
     }
     
     public DBManager getDBManager(){
