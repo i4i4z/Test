@@ -12,8 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    
-    
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,7 +21,16 @@ android {
         }
     }
 
-    greendao{
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    greendao {
         schemaVersion 1
         targetGenDir 'src/main/java'
         daoPackage 'com.example.pc.mvptest.model.greendao'
@@ -31,24 +40,26 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
     //rxjava1
+    //retrofit2
+    //okhtpp3
+    //依赖
+    //okhttpLog
+
+    //Gson
+    //greenDao
+    //umsdk
+    compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.0.1'
-    //retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
-    //okhtpp3
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okio:okio:1.7.0'
-    //依赖
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    //okhttpLog
-    
-    //Gson
-    compile "com.squareup.retrofit2:converter-gson:2.0.2"
-    //greenDao
-    compile'org.greenrobot:greendao:3.0.1'
-    compile'org.greenrobot:greendao-generator:3.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'org.greenrobot:greendao:3.0.1'
+    compile 'org.greenrobot:greendao-generator:3.0.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

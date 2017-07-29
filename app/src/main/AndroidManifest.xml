@@ -5,9 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
 
     <application
-        android:name="MyAppliacation"
+        android:name=".MyAppliacation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +28,34 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.SQlLiteActivity">
+        </activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="597c0f30bbea83158b000d3a"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="my_456268"/>
+
+        <activity android:name=".ui.activity.WXEntryActivity">
+        </activity>
+
+        <!-- 登录回调 -->
+        <activity
+            android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="true"
+            android:screenOrientation="sensor">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="line.1471474450"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.ShareEntryActivity">
         </activity>
     </application>
 

@@ -8,13 +8,21 @@ import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pc.mvptest.MyAppliacation;
 import com.example.pc.mvptest.R;
 import com.example.pc.mvptest.model.User;
+import com.example.pc.mvptest.model.entity.Defaultcontent;
 import com.example.pc.mvptest.model.entity.Teacher;
 import com.example.pc.mvptest.presenter.MainPresenter;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +43,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends BaseActivity{
     
     Observable mObservable;
     TextView mTextView;
@@ -67,11 +75,50 @@ public class MainActivity extends AppCompatActivity{
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SQlLiteActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this,SQlLiteActivity.class);
+//                startActivity(intent);
+                shared();
             }
         });
     }
+    
+    public void shared(){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(getResources().getColor(R.color.colorAccent));
+//
+//        }
+//        SHARE_MEDIA share_media = (SHARE_MEDIA) getIntent().getSerializableExtra("platform");
+        new ShareAction(MainActivity.this).withText(Defaultcontent.text)
+                .setPlatform(SHARE_MEDIA.WEIXIN)
+                .setCallback(mShareListener).share();
+    }
+    
+    private UMShareListener mShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+            Log.d("shared","onStart");
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA share_media) {
+            Log.d("shared","成功了");
+            Toast.makeText(MainActivity.this,"成功了",Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+            Log.d("shared","失败");
+            Toast.makeText(MainActivity.this,"失败"+throwable.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            Log.d("shared","取消了");
+            Toast.makeText(MainActivity.this,"取消了",Toast.LENGTH_LONG).show();
+        }
+    };
 
     
     public void rxjavaLift(){
