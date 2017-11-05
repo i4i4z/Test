@@ -24,6 +24,10 @@ public class MyAppliacation extends Application{
         UMShareAPI.get(this);
         Log.d("dd", "sadasdasdasdasd===============");
 //        CommonDBUtils commonDBUtils = new CommonDBUtils(this);ssss
+        
+        
+        
+        //==============================testPull========================================
     }
     
     public DBManager getDBManager(){
